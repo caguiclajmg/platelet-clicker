@@ -18,6 +18,7 @@
         .container {
             width: 100vw;
             height: 100vh;
+            overflow: hidden;
 
             background-size: cover;
             background-position: center;
@@ -65,7 +66,7 @@
         div_root.addEventListener('mouseup', function(e) {
             if(e.button !== 0) return;
 
-            down(e);
+            up(e);
         });
 
         div_root.addEventListener('touchstart', function(e) { down(e); e.preventDefault(); });
