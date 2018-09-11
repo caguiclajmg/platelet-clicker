@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>血小板</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="/static/1.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="血小板">
+    <meta property="og:description" content="">
+
+    <style>
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="div_root" class="container">
+    </div>
+
+    <script type="application/javascript">
+        var div_root = document.getElementById('div_root');
+
+        var img_normal = new Image(); img_normal.src = '/static/1.png';
+        var img_click = new Image(); img_click.src = '/static/2.png';
+        var snd_click = new Audio('/static/click.wav');
+        var snd_react = new Audio('/static/react.wav');
+
+        var clicks = 0;
+
+        div_root.style.backgroundImage = 'url(' + img_normal.src + ')';
+
+        div_root.addEventListener('mousedown', function(e) {
+            if(e.button !== 0) return;
+
+            div_root.style.backgroundImage = 'url(' + img_click.src + ')';
+
+            img_normal.style.display = 'none';
+            img_click.style.display = 'block';
+
+            snd_click.play();
+            if(clicks % 3 === 0) snd_react.play();
+
+            clicks++;
+        });
+
+        div_root.addEventListener('mouseup', function(e) {
+            if(e.button !== 0) return;
+
+            div_root.style.backgroundImage = 'url(' + img_normal.src + ')';
+        });
+    </script>
+</body>
+</html>
