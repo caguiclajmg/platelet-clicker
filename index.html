@@ -40,9 +40,7 @@
 
         div_root.style.backgroundImage = 'url(' + img_normal.src + ')';
 
-        div_root.addEventListener('mousedown', function(e) {
-            if(e.button !== 0) return;
-
+        function down(e) {
             div_root.style.backgroundImage = 'url(' + img_click.src + ')';
 
             img_normal.style.display = 'none';
@@ -52,13 +50,28 @@
             if(clicks % 3 === 0) snd_react.play();
 
             clicks++;
+        }
+
+        function up(e) {
+            div_root.style.backgroundImage = 'url(' + img_normal.src + ')';
+        }
+
+        div_root.addEventListener('mousedown', function(e) {
+            if(e.button !== 0) return;
+
+            down(e);
         });
 
         div_root.addEventListener('mouseup', function(e) {
             if(e.button !== 0) return;
 
-            div_root.style.backgroundImage = 'url(' + img_normal.src + ')';
+            down(e);
         });
+
+        div_root.addEventListener('touchstart', function(e) { down(e); e.preventDefault(); });
+        div_root.addEventListener('touchmove', function(e) { e.preventDefault(); });
+        div_root.addEventListener('touchend', function(e) { up(e); });
+        div_root.addEventListener('touchcancel', function(e) { up(e); });
     </script>
 </body>
 </html>
