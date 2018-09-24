@@ -51,7 +51,8 @@
             snd_click.play();
 
             if(++clicks % 3 === 0) {
-                var index = Math.floor(Math.random() * (snd_react.length + 1));
+                var index = Math.floor(Math.random() * snd_react.length);
+                console.log(index);
                 snd_react[index].play();
             }
         }
