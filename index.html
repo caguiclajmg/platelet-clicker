@@ -50,8 +50,10 @@
 
             snd_click.play();
 
-            if(++clicks % 3 === 0) reaction++;
-            snd_react[reaction % snd_react.length].play();
+            if(++clicks % 3 === 0) {
+                var index = Math.floor(Math.random() * (snd_react.length + 1));
+                snd_react[index].play();
+            }
         }
 
         function releas(e) {
