@@ -21,7 +21,6 @@
             height: 100vh;
             overflow: auto;
 
-            background-image: url('/static/1.png');
             background-size: cover;
             background-position: center;
 
@@ -64,6 +63,8 @@
         }
 
         snd_music.loop = true;
+
+        div_root.style.backgroundImage = 'url(' + img_normal.src + ')';
 
         div_root.addEventListener('mousedown', (e) => { if(e.button !== 0) return; pok(e); });
         div_root.addEventListener('mouseup', (e) => { if(e.button !== 0) return; releas(e); });
