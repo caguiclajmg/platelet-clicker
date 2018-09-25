@@ -33,13 +33,15 @@
     <div id="div_root" class="container"></div>
 
     <script type="application/javascript">
+        var path_root = '/';
+
         var div_root = document.getElementById('div_root');
 
-        var img_normal = new Image(); img_normal.src = '/static/1.png';
-        var img_click = new Image(); img_click.src = '/static/2.png';
-        var snd_click = new Audio('/static/click.ogg');
-        var snd_react = [new Audio('/static/react1.ogg'), new Audio('/static/react2.ogg')];
-        var snd_music = new Audio('/static/music.ogg');
+        var img_normal = new Image(); img_normal.src = path_root + 'static/1.png';
+        var img_click = new Image(); img_click.src = path_root + 'static/2.png';
+        var snd_click = new Audio(path_root + 'static/click.ogg');
+        var snd_react = [new Audio(path_root + 'static/react1.ogg'), new Audio('static/react2.ogg')];
+        var snd_music = new Audio(path_root + 'static/music.ogg');
         var clicks = 0;
         var reaction = 0;
 
