@@ -13,9 +13,13 @@
     <meta property="og:description" content="">
 
     <style>
-        @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
-        @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-
+        
+        body, .container {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        
         .container {
             width: 100vw;
             height: 100vh;
@@ -26,52 +30,72 @@
 
             text-align: center;
         }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #img_normal {
+            background-image: url("static/1.png");
+        }
+        
+        #img_click {
+            background-image: url("static/2.png");
+        }
     </style>
 </head>
 <body>
-    <div id="div_root" class="container"></div>
+    
+    <noscript>Please enable JavaScript execution in your browser</noscript>
+
+    <div id="div_root" class="container">
+        <div id="img_normal"></div>
+        <div id="img_click"></div>
+    </div>
 
     <script type="application/javascript">
-        var path_root = '/';
-
         var div_root = document.getElementById('div_root');
 
-        var img_normal = new Image(); img_normal.src = path_root + 'static/1.png';
-        var img_click = new Image(); img_click.src = path_root + 'static/2.png';
-        var snd_click = new Audio(path_root + 'static/click.ogg');
-        var snd_react = [new Audio(path_root + 'static/react1.ogg'), new Audio('static/react2.ogg')];
-        var snd_music = new Audio(path_root + 'static/music.ogg');
+        var images = [ document.getElementById('img_normal'), document.getElementById('img_click') ];
+
+        var snd_click = new Audio('static/click.ogg');
+        var snd_react = [new Audio('static/react1.ogg'), new Audio('static/react2.ogg')];
+        var snd_music = new Audio('static/music.ogg');
+        snd_music.loop = true;
+        
         var clicks = 0;
         var reaction = 0;
+
+        function show_image(index) {
+            for (var i = 0; i < images.length; ++i)
+                images[i].className = (i === index) ? "container" : "hidden container";
+        }
 
         function pok(e) {
             if(snd_music.paused) snd_music.play();
 
-            div_root.style.backgroundImage = 'url(' + img_click.src + ')';
+            show_image(1);
 
             snd_click.play();
 
             if(++clicks % 3 === 0) {
                 var index = Math.floor(Math.random() * snd_react.length);
-                console.log(index);
                 snd_react[index].play();
             }
         }
 
         function releas(e) {
-            div_root.style.backgroundImage = 'url(' + img_normal.src + ')';
+            show_image(0);
         }
+        
+        show_image(0);
 
-        snd_music.loop = true;
-
-        div_root.style.backgroundImage = 'url(' + img_normal.src + ')';
-
-        div_root.addEventListener('mousedown', (e) => { if(e.button !== 0) return; pok(e); });
-        div_root.addEventListener('mouseup', (e) => { if(e.button !== 0) return; releas(e); });
-        div_root.addEventListener('touchstart', (e) => { pok(e); e.preventDefault(); });
-        div_root.addEventListener('touchmove', (e) => { e.preventDefault(); });
-        div_root.addEventListener('touchend', (e) => { releas(e); });
-        div_root.addEventListener('touchcancel', (e) => { releas(e); });
+        div_root.addEventListener('mousedown', function(e) { if(e.button !== 0) return; pok(e); });
+        div_root.addEventListener('mouseup', function(e) { if(e.button !== 0) return; releas(e); });
+        div_root.addEventListener('touchstart', function(e) { pok(e); e.preventDefault(); });
+        div_root.addEventListener('touchmove', function(e) { e.preventDefault(); });
+        div_root.addEventListener('touchend', function(e) { releas(e); });
+        div_root.addEventListener('touchcancel', function(e) { releas(e); });
     </script>
 </body>
 </html>
