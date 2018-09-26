@@ -68,10 +68,7 @@
 
         function show_image(index) {
             for (var i = 0; i < images.length; ++i)
-                if (i != index)
-                    images[i].className = "hidden container";
-            
-            images[index].className = "container";
+                images[i].className = (i === index) ? "container" : "hidden container";
         }
 
         function pok(e) {
