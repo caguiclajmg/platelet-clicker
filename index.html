@@ -7,7 +7,7 @@
     <title>血小板</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:image" content="https://www.platelets.fun/static/1.png">
+    <meta property="og:image" content="https://platelets.fun/public/images/1.png">
     <meta property="og:type" content="website">
     <meta property="og:title" content="血小板">
     <meta property="og:description" content="">
@@ -36,11 +36,11 @@
         }
 
         #img_normal {
-            background-image: url("static/1.png");
+            background-image: url("public/images/1.png");
         }
 
         #img_click {
-            background-image: url("static/2.png");
+            background-image: url("public/images/2.png");
         }
     </style>
 </head>
@@ -58,9 +58,9 @@
 
         var images = [ document.getElementById('img_normal'), document.getElementById('img_click') ];
 
-        var snd_click = new Audio('static/click.ogg');
-        var snd_react = [new Audio('static/react1.ogg'), new Audio('static/react2.ogg')];
-        var snd_music = new Audio('static/music.ogg');
+        var snd_click = new Audio('public/sounds/click.ogg');
+        var snd_react = [new Audio('public/sounds/react1.ogg'), new Audio('public/sounds/react2.ogg')];
+        var snd_music = new Audio('public/sounds/music.ogg');
         snd_music.loop = true;
 
         var clicks = 0;
