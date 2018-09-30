@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="jp">
+<html lang="ja">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,13 +13,13 @@
     <meta property="og:description" content="">
 
     <style>
-        
+
         body, .container {
             margin: 0;
             padding: 0;
             border: 0;
         }
-        
+
         .container {
             width: 100vw;
             height: 100vh;
@@ -30,22 +30,22 @@
 
             text-align: center;
         }
-        
+
         .hidden {
             display: none;
         }
-        
+
         #img_normal {
             background-image: url("static/1.png");
         }
-        
+
         #img_click {
             background-image: url("static/2.png");
         }
     </style>
 </head>
 <body>
-    
+
     <noscript>Please enable JavaScript execution in your browser</noscript>
 
     <div id="div_root" class="container">
@@ -62,7 +62,7 @@
         var snd_react = [new Audio('static/react1.ogg'), new Audio('static/react2.ogg')];
         var snd_music = new Audio('static/music.ogg');
         snd_music.loop = true;
-        
+
         var clicks = 0;
         var reaction = 0;
 
@@ -87,7 +87,7 @@
         function releas(e) {
             show_image(0);
         }
-        
+
         show_image(0);
 
         div_root.addEventListener('mousedown', function(e) { if(e.button !== 0) return; pok(e); });
