@@ -20,6 +20,11 @@
     <div id="div_root" class="container">
         <div id="img_normal"></div>
         <div id="img_click"></div>
+
+        <audio id="audioMusic" loop volume="0.8">
+            <source src="public/sounds/music.ogg" type="audio/ogg">
+            <source src="public/sounds/music.mp3" type="audio/mpeg">
+        </audio>
     </div>
 
     <script type="application/javascript">
@@ -29,8 +34,7 @@
 
         var snd_click = new Audio('public/sounds/click.ogg');
         var snd_react = [new Audio('public/sounds/react1.ogg'), new Audio('public/sounds/react2.ogg')];
-        var snd_music = new Audio('public/sounds/music.ogg');
-        snd_music.loop = true;
+        var audioMusic = document.getElementById('audioMusic');
 
         var clicks = 0;
         var reaction = 0;
@@ -41,7 +45,7 @@
         }
 
         function pok(e) {
-            if(snd_music.paused) snd_music.play();
+            if(audioMusic.paused) audioMusic.play();
 
             show_image(1);
 
