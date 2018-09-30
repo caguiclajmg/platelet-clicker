@@ -1,0 +1,28 @@
+body, .container {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+
+    background-size: cover;
+    background-position: center;
+
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+#img_normal {
+    background-image: url("/public/images/1.png");
+}
+
+#img_click {
+    background-image: url("/public/images/2.png");
+}
