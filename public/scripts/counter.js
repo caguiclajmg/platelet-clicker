@@ -1,12 +1,14 @@
-var divRoot = document.getElementById('div-root');
+'use strict';
 
-var snd_react = [new Audio('public/sounds/react1.ogg'), new Audio('public/sounds/react2.ogg')];
+var divRoot = document.getElementById('div-root');
 
 var imageNormal = document.getElementById('image-normal');
 var imagePoke = document.getElementById('image-poke');
 
 var audioMusic = document.getElementById('audio-music');
 var audioPoke = document.getElementById('audio-poke');
+
+var snd_react = [new Audio('public/sounds/react1.ogg'), new Audio('public/sounds/react2.ogg')];
 
 var clicks = 0;
 
@@ -22,7 +24,7 @@ function pok(e) {
 
     toggleImage(true);
 
-    if(++clicks % 3 === 0) {
+    if(++clicks % 6 === 0) {
         var index = Math.floor(Math.random() * snd_react.length);
         snd_react[index].play();
     }
