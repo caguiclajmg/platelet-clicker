@@ -17,39 +17,39 @@
 <body>
     <noscript>Please enable JavaScript execution in your browser</noscript>
 
-    <div id="div_root" class="container">
-        <div id="img_normal"></div>
-        <div id="img_click"></div>
+    <div id="div-root" class="container container-root">
+        <div id="image-normal" class="container-image"></div>
+        <div id="image-poke" class="container-image"></div>
 
-        <audio id="audioMusic" loop volume="0.8">
+        <audio id="audio-music" loop volume="0.8">
             <source src="public/sounds/music.ogg" type="audio/ogg">
             <source src="public/sounds/music.mp3" type="audio/mpeg">
         </audio>
     </div>
 
     <script type="application/javascript">
-        var div_root = document.getElementById('div_root');
-
-        var images = [ document.getElementById('img_normal'), document.getElementById('img_click') ];
+        var divRoot = document.getElementById('div-root');
 
         var snd_click = new Audio('public/sounds/click.ogg');
         var snd_react = [new Audio('public/sounds/react1.ogg'), new Audio('public/sounds/react2.ogg')];
-        var audioMusic = document.getElementById('audioMusic');
+
+        var imageNormal = document.getElementById('image-normal');
+        var imagePoke = document.getElementById('image-poke');
+        var audioMusic = document.getElementById('audio-music');
 
         var clicks = 0;
-        var reaction = 0;
 
-        function show_image(index) {
-            for (var i = 0; i < images.length; ++i)
-                images[i].className = (i === index) ? "container" : "hidden container";
+        function toggleImage(down) {
+            imageNormal.style.display = down ? 'none' : 'block';
+            imagePoke.style.display = down ? 'block' : 'none';
         }
 
         function pok(e) {
             if(audioMusic.paused) audioMusic.play();
 
-            show_image(1);
-
             snd_click.play();
+
+            toggleImage(true);
 
             if(++clicks % 3 === 0) {
                 var index = Math.floor(Math.random() * snd_react.length);
@@ -58,17 +58,17 @@
         }
 
         function releas(e) {
-            show_image(0);
+            toggleImage(false);
         }
 
-        show_image(0);
+        toggleImage(false);
 
-        div_root.addEventListener('mousedown', function(e) { if(e.button !== 0) return; pok(e); });
-        div_root.addEventListener('mouseup', function(e) { if(e.button !== 0) return; releas(e); });
-        div_root.addEventListener('touchstart', function(e) { pok(e); e.preventDefault(); });
-        div_root.addEventListener('touchmove', function(e) { e.preventDefault(); });
-        div_root.addEventListener('touchend', function(e) { releas(e); });
-        div_root.addEventListener('touchcancel', function(e) { releas(e); });
+        divRoot.addEventListener('mousedown', function(e) { if(e.button !== 0) return; pok(e); });
+        divRoot.addEventListener('mouseup', function(e) { if(e.button !== 0) return; releas(e); });
+        divRoot.addEventListener('touchstart', function(e) { pok(e); e.preventDefault(); });
+        divRoot.addEventListener('touchmove', function(e) { e.preventDefault(); });
+        divRoot.addEventListener('touchend', function(e) { releas(e); });
+        divRoot.addEventListener('touchcancel', function(e) { releas(e); });
     </script>
 </body>
 </html>
