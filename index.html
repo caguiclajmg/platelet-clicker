@@ -17,14 +17,29 @@
 <body>
     <noscript>Please enable JavaScript execution in your browser</noscript>
 
+    <audio id="audio_music" loop volume="0.8">
+        <source src="public/sounds/music.ogg" type="audio/ogg">
+        <source src="public/sounds/music.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audio_click">
+        <source src="public/sounds/click.ogg" type="audio/ogg">
+        <source src="public/sounds/click.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audio_react1">
+        <source src="public/sounds/react1.ogg" type="audio/ogg">
+        <source src="public/sounds/react1.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="audio_react2">
+        <source src="public/sounds/react2.ogg" type="audio/ogg">
+        <source src="public/sounds/react2.mp3" type="audio/mpeg">
+    </audio>
+
     <div id="div_root" class="container">
         <div id="img_normal"></div>
         <div id="img_click"></div>
-
-        <audio id="audioMusic" loop volume="0.8">
-            <source src="public/sounds/music.ogg" type="audio/ogg">
-            <source src="public/sounds/music.mp3" type="audio/mpeg">
-        </audio>
     </div>
 
     <script type="application/javascript">
@@ -32,9 +47,9 @@
 
         var images = [ document.getElementById('img_normal'), document.getElementById('img_click') ];
 
-        var snd_click = new Audio('public/sounds/click.ogg');
-        var snd_react = [new Audio('public/sounds/react1.ogg'), new Audio('public/sounds/react2.ogg')];
-        var audioMusic = document.getElementById('audioMusic');
+        var audio_click = document.getElementById('audio_click');
+        var audio_react = [document.getElementById('audio_react1'), document.getElementById('audio_react2')];
+        var audio_music = document.getElementById('audio_music');
 
         var clicks = 0;
         var reaction = 0;
@@ -45,15 +60,15 @@
         }
 
         function pok(e) {
-            if(audioMusic.paused) audioMusic.play();
+            if(audio_music.paused) audio_music.play();
 
             show_image(1);
 
-            snd_click.play();
+            audio_click.play();
 
             if(++clicks % 3 === 0) {
-                var index = Math.floor(Math.random() * snd_react.length);
-                snd_react[index].play();
+                var index = Math.floor(Math.random() * audio_react.length);
+                audio_react[index].play();
             }
         }
 
@@ -72,3 +87,4 @@
     </script>
 </body>
 </html>
+

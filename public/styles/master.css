@@ -20,9 +20,10 @@ body, .container {
 }
 
 #img_normal {
-    background-image: url("/public/images/1.png");
+    background-image: url("../images/1.png");
 }
 
 #img_click {
-    background-image: url("/public/images/2.png");
+    background-image: url("../images/2.png");
 }
+
