@@ -3,13 +3,13 @@ body {
     padding: 0;
     border: 0;
 
-    widtH: 100vw;
+    width: 100vw;
     height: 100vh;
 
     overflow: hidden;
 }
 
-#div-root {
+.container {
     width: 100%;
     height: 100%;
 
@@ -20,14 +20,5 @@ body {
     width: 100%;
     height: 100%;
 
-    background-position: center;
-    background-size: cover;
-}
-
-#image-normal {
-    background-image: url('/public/images/1.png');
-}
-
-#image-poke {
-    background-image: url('/public/images/2.png');
+    object-fit: cover;
 }
