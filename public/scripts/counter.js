@@ -5,12 +5,42 @@ var divRoot = document.getElementById('div-root');
 var imageNormal = document.getElementById('image-normal');
 var imagePoke = document.getElementById('image-poke');
 
-var audioMusic = document.getElementById('audio-music');
-var audioPoke = document.getElementById('audio-poke');
+var audioMusic = createAudioElement({
+    'audio/ogg': 'public/sounds/music.ogg',
+    'audio/mpeg': 'public/sounds/music.mp3'
+})
+audioMusic.loop = true;
+audioMusic.volume = 0.8;
 
-var snd_react = [new Audio('public/sounds/react1.ogg'), new Audio('public/sounds/react2.ogg')];
+var audioPoke = createAudioElement({
+    'audio/ogg': 'public/sounds/poke.ogg',
+    'audio/mpeg': 'public/sounds/poke.mp3'
+});
 
+var reactionFiles = [
+    {
+        'audio/ogg': 'public/sounds/react1.ogg',
+        'audio/mpeg': 'public/sounds/react1.mp3'
+    },
+    {
+        'audio/ogg': 'public/sounds/react2.ogg',
+        'audio/mpeg': 'public/sounds/react2.mp3'
+    }
+]
+
+var audioReact = reactionFiles.map(createAudioElement);
 var clicks = 0;
+
+function createAudioElement(source) {
+    var audioElement = document.createElement('audio');
+    Object.keys(source).forEach(function(key) {
+        var sourceElement = document.createElement('source');
+        sourceElement.type = key;
+        sourceElement.src = source[key];
+        audioElement.appendChild(sourceElement);
+    });
+    return audioElement;
+}
 
 function toggleImage(down) {
     imageNormal.style.display = down ? 'none' : 'block';
@@ -25,8 +55,8 @@ function pok(e) {
     toggleImage(true);
 
     if(++clicks % 6 === 0) {
-        var index = Math.floor(Math.random() * snd_react.length);
-        snd_react[index].play();
+        var index = Math.floor(Math.random() * audioReact.length);
+        audioReact[index].play();
     }
 }
 
