@@ -18,27 +18,27 @@ var audioPoke = createAudioElement({
 });
 
 var reactionFiles = [
-    'public/sounds/react1.ogg',
-    'public/sounds/react2.ogg'
+    {
+        'audio/ogg': 'public/sounds/react1.ogg',
+        'audio/mpeg': 'public/sounds/react1.mp3'
+    },
+    {
+        'audio/ogg': 'public/sounds/react2.ogg',
+        'audio/mpeg': 'public/sounds/react2.mp3'
+    }
 ]
 
-var snd_react = reactionFiles.map(createAudioElement);
+var audioReact = reactionFiles.map(createAudioElement);
 var clicks = 0;
 
 function createAudioElement(source) {
     var audioElement = document.createElement('audio');
-    if(typeof source === 'string') {
+    Object.keys(source).forEach(function(key) {
         var sourceElement = document.createElement('source');
-        sourceElement.src = source;
+        sourceElement.type = key;
+        sourceElement.src = source[key];
         audioElement.appendChild(sourceElement);
-    } else {
-        Object.keys(source).forEach(function (key) {
-            var sourceElement = document.createElement('source');
-            sourceElement.type = key;
-            sourceElement.src = source[key];
-            audioElement.appendChild(sourceElement);
-        });
-    }
+    });
     return audioElement;
 }
 
@@ -55,8 +55,8 @@ function pok(e) {
     toggleImage(true);
 
     if(++clicks % 6 === 0) {
-        var index = Math.floor(Math.random() * snd_react.length);
-        snd_react[index].play();
+        var index = Math.floor(Math.random() * audioReact.length);
+        audioReact[index].play();
     }
 }
 
