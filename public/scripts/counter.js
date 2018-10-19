@@ -8,7 +8,7 @@ var imagePoke = document.getElementById('image-poke');
 var audioMusic = createAudioElement({
     'audio/ogg': 'public/sounds/music.ogg',
     'audio/mpeg': 'public/sounds/music.mp3'
-})
+});
 audioMusic.loop = true;
 audioMusic.volume = 0.8;
 
